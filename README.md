@@ -70,15 +70,49 @@ Popular clustering algorithms:
 ## K-means and density based clustering
 
 ## Evaluation of clustering performances with silhouette metrics
-Silhouet
-## Pipeline building
-Using sklearn pipeline class
-Pipeline tuning
+Two methods that are commonly used to evaluate the appropriate number of clusters:
 
-## Tuning the clustering algorithm
-Choosing the number of clusters
+- The elbow method
+  There’s a sweet spot where the SSE curve starts to bend known as the elbow point. The x-value of this point is thought to be a reasonable trade-off between error and number of clusters. 
+  
+- The silhouette coefficient
+  This is a measure of cluster cohesion and separation. It quantifies how well a data point fits into its assigned cluster based on two factors:
+
+  - How close the data point is to other points in the cluster
+  - How far away the data point is from points in other clusters
+
+The elbow method and silhouette coefficient evaluate clustering performance without the use of ground truth labels. 
+
+These are often used as complementary evaluation techniques rather than one being preferred over the other. To perform the elbow method, run several k-means, increment k with each iteration, and record the SSE
+
+**Adjusted rand index (ARI)**
+
+Unlike the silhouette coefficient, the ARI uses true cluster assignments to measure the similarity between true and predicted labels.
+
+## Pipeline building
+
+### Dataset
+
+Data contain gene expression values from a manuscript authored by The Cancer Genome Atlas (TCGA) Pan-Cancer analysis project investigators.
+
+There are 881 samples (rows) representing five distinct cancer subtypes. Each sample has gene expression values for 20,531 genes (columns). The dataset is available from the UC Irvine Machine Learning Repository, but you can use the Python code below to obtain the data programmatically.
+
+### Preprocessing
+An equally important data transformation technique is dimensionality reduction, which reduces the number of features in the dataset by either removing or combining them.
+
+Principal Component Analysis (PCA) is one of many dimensionality reduction techniques. PCA transforms the input data by projecting it into a lower number of dimensions called components. The components capture the variability of the input data through a linear combination of the input data’s features.
+
+The pipeline implements an alternative to the StandardScaler class called MinMaxScaler for feature scaling. You use MinMaxScaler when you do not assume that the shape of all your features follows a normal distribution.
+
+The next step in the preprocessing pipeline will implement the PCA class to perform dimensionality reduction
+
 
 ## Plotting
+![img.png](img.png)
+
+
+Plot the evaluation metrics as a function of n_components to visualize the relationship between adding components and the performance of the k-means clustering results
+![img_1.png](img_1.png)
 
 References:
 - https://realpython.com/k-means-clustering-python/
