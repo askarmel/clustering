@@ -12,6 +12,7 @@ features, true_labels = make_blobs(
     random_state=42
 )
 
+# create a scaler
 scaler = StandardScaler()
 scaled_features = scaler.fit_transform(features)
 
